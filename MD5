@@ -1,0 +1,15 @@
+f9a77842e4238d365eb9ac1dc110f125 *DESCRIPTION
+eba2016002e557ff93d374362e17d7a5 *LICENSE
+2f9d4fa2a121e1d17717034a4dfbcd07 *NAMESPACE
+536991358464fda326c50c2e14188561 *NEWS.md
+9cadf45e389ada7f1d43d25caa583f78 *R/api.R
+a6761d99b9f0a770ea65b6e4ab1a321f *R/cran.R
+8ee03fa80e2a7d042911d3f0756b4900 *R/print.R
+dc9d7af923fbb43ac3556eb22d07fa96 *R/utils.R
+3d6bc9a2fe472434a3c8c302d33a7d33 *README.md
+9509858baacacdaef5bde48431282864 *inst/README.Rmd
+52b134c22aed2a90d5a1f42afc52704d *man/pkg_search.Rd
+5bc1dea00464c50dd5c466f8429618b1 *tests/testthat.R
+2732901a68c9654249a6acde25ee34e8 *tests/testthat/test-print.R
+9081b101fca7c170c9a59f751bcaaa86 *tests/testthat/test-search.R
+f2e1dd239c5f1e9bf75d41f6f44d24fb *tests/testthat/test-utils.R
