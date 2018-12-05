@@ -1,6 +1,6 @@
 Package: pkgsearch
 Title: Search CRAN R Packages
-Version: 2.0.0
+Version: 2.0.1
 Authors@R: c(person("Gábor", "Csárdi", email = "csardi.gabor@gmail.com",
 	     role = c("aut", "cre")))
 Description: Search CRAN R packages. Uses the 'METACRAN' search server,
@@ -14,8 +14,8 @@ Suggests: covr, testthat, tibble
 Encoding: UTF-8
 RoxygenNote: 6.1.0
 NeedsCompilation: no
-Packaged: 2018-11-07 11:20:26 UTC; gaborcsardi
+Packaged: 2018-12-04 22:38:55 UTC; gaborcsardi
 Author: Gábor Csárdi [aut, cre]
 Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Repository: CRAN
-Date/Publication: 2018-11-16 16:00:03 UTC
+Date/Publication: 2018-12-05 06:50:03 UTC
