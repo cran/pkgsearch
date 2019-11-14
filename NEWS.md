@@ -1,9 +1,27 @@
 
-# 2.0.1
+# pkgsearch 3.0.0
+
+* New RStudio addin to search for packages in a GUI:
+  `pkg_search_addin()`.
+
+* New `cran_package()`, `cran_packages()` and `cran_package_history()`
+  functions to query metadata about certain packages.
+
+* New `cran_events()` function to list recent CRAN events, new, updated
+  or archived packages.
+    
+* New `cran_top_downloaded()` function to query packages with the most
+  downloads.
+
+* New `cran_trending()` function to return the trending CRAN packages.
+
+* New function `advanced_search()` for more search flexibility.
+
+# pkgsearch 2.0.1
 
 * Fix a bug when a search hit does not have a 'downloads' field.
   (Because it is a brand new package.)
 
-# 2.0.0
+# pkgsearch 2.0.0
 
 First release on CRAN.

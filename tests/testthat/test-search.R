@@ -2,7 +2,7 @@
 context("search")
 
 test_that("search", {
-  skip_on_cran()
+  skip_if_offline()
 
   x <- ps("csardi")
   expect_s3_class(x, "tbl_df")
@@ -29,14 +29,14 @@ test_that("more w/o previous search", {
 })
 
 test_that("again", {
-  skip_on_cran()
+  skip_if_offline()
 
   x <- ps("csardi")
-  expect_equal(meta(s_data$prev_q)$format, "short")
+  expect_equal(meta(s_data$prev_q$result)$format, "short")
   expect_error(x2 <- ps(), NA)
-  expect_equal(meta(s_data$prev_q)$format, "long")
+  expect_equal(meta(s_data$prev_q$result)$format, "long")
   expect_error(x3 <- ps(), NA)
-  expect_equal(meta(s_data$prev_q)$format, "short")
+  expect_equal(meta(s_data$prev_q$result)$format, "short")
 
   expect_s3_class(x2, "tbl_df")
   expect_s3_class(x2, "pkg_search_result")
@@ -48,7 +48,7 @@ test_that("again", {
 })
 
 test_that("more", {
-  skip_on_cran()
+  skip_if_offline()
 
   x <- ps("csardi")
   x2 <- more()

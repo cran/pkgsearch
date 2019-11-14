@@ -1,9 +1,7 @@
 
-. <- "dot"
-
 ## ----------------------------------------------------------------------
 
-s_data <- new.env()
+s_data <- new.env(parent = emptyenv())
 
 #' Search CRAN packages
 #'
@@ -14,7 +12,7 @@ s_data <- new.env()
 #' `ps()` is an alias to `pkg_search()`.
 #'
 #' `more()` retrieves that next page of results for the previous query.
-#' 
+#'
 #' @details
 #' Note that the search needs a working Internet connection.
 #'
@@ -49,9 +47,8 @@ s_data <- new.env()
 #'   * `bugreports`: URL of issue tracker, or email address for bug reports.
 #'
 #' @export
-#' @importFrom magrittr %>% extract2
 #' @examples
-#' \donttest{
+#' \dontshow{ asNamespace("pkgsearch")$exif(pingr::is_online(), \{ }
 #' # Example
 #' ps("survival")
 #'
@@ -66,7 +63,7 @@ s_data <- new.env()
 #' # See the underlying tibble
 #' ps("ropensci")
 #' ps()[]
-#' }
+#' \dontshow{ \}) }
 
 pkg_search <- function(query = NULL, format = c("short", "long"),
                        from = 1, size = 10) {
@@ -86,29 +83,48 @@ ps <- pkg_search
 
 make_pkg_search <- function(query, format, from, size, server, port) {
 
-  result <- make_query(query = query) %>%
-    do_query(server = server, port = port, from = from, size = size) %>%
-    format_result(query = query, format = format, from = from,
-                  size = size, server = server, port = port)
+  qry <- make_query(query = query)
+  rsp <- do_query(qry, server = server, port = port, from = from,
+                  size = size)
+  rst <- format_result(rsp, query = query, format = format, from = from,
+                       size = size, server = server, port = port)
 
-  s_data$prev_q <- result
+  s_data$prev_q <- list(type = "simple", result = rst)
 
-  result
+  rst
 }
 
 #' @rdname pkg_search
 #' @export
 
 more <- function(format = NULL, size = NULL) {
-  if (is.null(s_data$prev_q)) { stop("No query, start with 'pkg_search'") }
-  make_pkg_search(
-    query = meta(s_data$prev_q)$query,
-    format = format %||% meta(s_data$prev_q)$format,
-    from = meta(s_data$prev_q)$from + meta(s_data$prev_q)$size,
-    size = size %||% meta(s_data$prev_q)$size,
-    server = meta(s_data$prev_q)$server,
-    port = meta(s_data$prev_q)$port
-  )
+  if (is.null(s_data$prev_q)) {
+    throw(new_error("No query, start with 'pkg_search()'"))
+  }
+
+  rst <- s_data$prev_q$result
+
+  if (s_data$prev_q$type == "simple") {
+    make_pkg_search(
+      query = meta(rst)$query,
+      format = format %||% meta(rst)$format,
+      from = meta(rst)$from + meta(rst)$size,
+      size = size %||% meta(rst)$size,
+      server = meta(rst)$server,
+      port = meta(rst)$port
+    )
+
+  } else if (s_data$prev_q$type == "advanced") {
+    advanced_search(
+      json = meta(rst)$qstr,
+      format = format %||% meta(rst)$format,
+      from = meta(rst)$from + meta(rst)$size,
+      size = size %||% meta(rst)$size
+    )
+
+  } else {
+    throw(new_error("Unknown search type, internal pkgsearch error :("))
+  }
 }
 
 #' @importFrom jsonlite toJSON
@@ -182,15 +198,52 @@ do_query <- function(query, server, port, from, size) {
   result <- POST(
     url, body = query,
     add_headers("Content-Type" = "application/json"))
-  stop_for_status(result)
+  rethrow(
+    stop_for_status(result),
+    new_query_error(result, "search server failure")
+  )
 
   content(result, as = "text")
+}
+
+new_query_error <- function(response, ...) {
+  cond <- new_error(...)
+  class(cond) <- c("pkgsearch_query_error", class(cond))
+  cond$response <- response
+  cond
+}
+
+#' @export
+
+print.pkgsearch_query_error <- function(x, ...) {
+  # The call to the httr method is quite tedious and not very useful,
+  # so we remove it
+  x$parent$call <- NULL
+
+  # default print method for the error itself
+  err$print_this(x, ...)
+
+  # error message from Elastic, if any
+  tryCatch({
+    rsp <- x$response
+    cnt <- fromJSON(content(rsp, as = "text"), simplifyVector = FALSE)
+    if ("error" %in% names(cnt) &&
+        "root_cause" %in% names(cnt$error) &&
+        "reason" %in% names(cnt$error$root_cause[[1]])) {
+      cat("", cnt$error$root_cause[[1]]$reason, "", sep = "\n")
+    }
+  }, error = function(x) NULL)
+
+  # parent error(s)
+  err$print_parents(x, ...)
+
+  invisible(x)
 }
 
 #' @importFrom parsedate parse_iso_8601
 
 format_result <- function(result, query, format, from, size, server,
-                          port) {
+                          port, ...) {
   result <- fromJSON(result, simplifyVector = FALSE)
 
   meta <- list(
@@ -203,7 +256,8 @@ format_result <- function(result, query, format, from, size, server,
     total = result$hits$total,
     max_score = result$hits$max_score,
     took = result$took,
-    timed_out = result$timed_out
+    timed_out = result$timed_out,
+    ...
   )
 
   sources <- map(result$hits$hits, "[[", "_source")
@@ -235,9 +289,18 @@ format_result <- function(result, query, format, from, size, server,
   df
 }
 
+#' @export
+
+`[.pkg_search_result` <- function(x, i, j, drop = FALSE) {
+  class(x) <- setdiff(class(x), "pkg_search_result")
+  NextMethod("[")
+}
+
 pkg_search_again <- function() {
-  if (is.null(s_data$prev_q)) { stop("No query given, and no previous query") }
-  format <- meta(s_data$prev_q)$format
-  meta(s_data$prev_q)$format <- if (format == "short") "long" else "short"
-  s_data$prev_q
+  if (is.null(s_data$prev_q)) {
+    throw(new_error("No query given, and no previous query"))
+  }
+  format <- meta(s_data$prev_q$result)$format
+  meta(s_data$prev_q$result)$format <- if (format == "short") "long" else "short"
+  s_data$prev_q$result
 }
