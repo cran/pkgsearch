@@ -1,4 +1,12 @@
 
+# pkgsearch 3.0.2
+
+* The RStudio addin now gives a better error more missing dependencies
+  (#84, @yonicd)
+
+* `cran_package_history()` now errors for non-existing packages, instead
+  of returning `NULL` or the data for another package (#88).
+
 # pkgsearch 3.0.1
 
 * The "My packages" and "Most depended upon" items now work properly
