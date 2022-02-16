@@ -13,12 +13,13 @@
 #' cran_package("pkgsearch")
 #' \dontshow{\}) # examplesIf}
 #' @export
-#' @importFrom assertthat assert_that
 
 cran_package <- function(name, version = NULL) {
 
-  assert_that(is_package_name(name))
-  assert_that(is.null(version) || is_package_version(version))
+  assert_that(
+    is_package_name(name),
+    is.null(version) || is_package_version(version)
+  )
 
   ept <- name
   if (! is.null(version)) ept <- paste0(ept, "/", version)
@@ -78,16 +79,17 @@ cran_packages <- function(names) {
 #' cran_events(limit = 5, archivals = FALSE)
 #' summary(cran_events(limit = 10))
 #' \dontshow{\}) # examplesIf}
-#' @importFrom assertthat assert_that is.count is.flag
 
 cran_events <- function(releases = TRUE, archivals = TRUE, limit = 10,
                         from = 1) {
 
-  assert_that(is.count(limit))
-  assert_that(is.flag(releases))
-  assert_that(is.flag(archivals))
-  assert_that(releases || archivals)
-  assert_that(is.count(from))
+  assert_that(
+    is_positive_count(limit),
+    is_flag(releases),
+    is_flag(archivals),
+    releases || archivals,
+    is_positive_count(from)
+  )
 
   mode <- if (releases && archivals) {
     "events"
@@ -118,7 +120,7 @@ cran_events <- function(releases = TRUE, archivals = TRUE, limit = 10,
 #' counts, compared to the average weekly downloads in the previous 24
 #' weeks. The percentage of increase is also shown in the output.
 #'
-#' @return Tibble of trending packages.
+#' @return Data frame of trending packages.
 #'
 #' @export
 #' @examples
@@ -133,14 +135,14 @@ cran_trending <- function() {
   Encoding(cnt) <- "UTF-8"
   tb <- fromJSON(cnt, simplifyDataFrame = TRUE)
   colnames(tb) <- c("package", "score")
-  tibble::as_tibble(tb)
+  as_data_frame(tb)
 }
 
 #' Top downloaded packages
 #'
 #' Last week.
 #'
-#' @return Tibble of top downloaded packages.
+#' @return Data frame of top downloaded packages.
 #'
 #' @details You can use the [`cranlogs` package](https://r-hub.github.io/cranlogs/)
 #' to get more flexibility into what is returned.
@@ -158,7 +160,115 @@ cran_top_downloaded <- function() {
   Encoding(cnt) <- "UTF-8"
   tb <- fromJSON(cnt, simplifyDataFrame = TRUE)$downloads
   names(tb) <- c("package", "count")
-  tibble::as_tibble(tb)
+  as_data_frame(tb)
+}
+
+#' New CRAN packages
+#'
+#' List the latest new CRAN packages.
+#'
+#' @param from Start of the time interval to query. Possible values:
+#' * `"last-week"`
+#' * `"last-month"`
+#' * A [Date] object to be used as a start date.
+#' * A [POSIXt] object to be used as the start date.
+#' * A [difftime] object to used as the time interval until now.
+#' * An integer scalar, the number of days until today.
+#' * A character string that is converted to a start date using
+#'   [as.POSIXct()].
+#' @param to End of the time interval to query. It accepts the same kinds
+#' of values as `from`, and additionally it can also be the string `"now"`,
+#' to specify the current date and time.
+#' @param last Integer to limit the number of returned packages.
+#' @return Data frame of package descriptions.
+#'
+#' @export
+#' @importFrom parsedate format_iso_8601
+#' @examples
+#' \dontrun{
+#' # Last week
+#' cran_new("last-week")
+#'
+#' # Last month
+#' cran_new("last-month")
+#'
+#' # Last 5 days
+#' cran_new(from = 5)
+#'
+#' # From a given date, but at most 10
+#' cran_new(from = "2021-04-06", last = 10)
+#'
+#' # March of 2021
+#' cran_new(from = "2021-03-01", to = "2021-04-01")
+#' }
+
+cran_new <- function(from = "last-week", to = "now", last = Inf) {
+
+  from <- interpret_date(from, "from")
+  if (identical(to, "now")) {
+    to <- NULL
+  } else {
+    to <- interpret_date(to, "to")
+  }
+
+  param <- c(
+    end_key = paste0('"', format_iso_8601(from), '"'),
+    start_key = if (!is.null(to)) paste0('"', format_iso_8601(to), '"'),
+    limit = if (is.finite(last)) last,
+    descending = "true"
+  )
+
+  url <- paste0(
+    "https://crandb.r-pkg.org:6984/cran/_design/internal/_view/new?",
+    paste0(names(param), "=", param, collapse = "&")
+  )
+
+  rsp <- http_get(url)
+  cnt <- rawToChar(rsp$content)
+  Encoding(cnt) <- "UTF-8"
+  rst <- fromJSON(cnt, simplifyVector = FALSE)
+
+  pkgs <- lapply(rst$rows, function(r) r$value$package)
+  dsc <- rectangle_packages(pkgs)
+
+  dpc <- "Date/Publication"
+  if (dpc %in% colnames(dsc)) {
+    dsc <- dsc[, c(dpc, setdiff(colnames(dsc), dpc))]
+  } else {
+    pub <- data_frame(
+      "Date/Publication" = map_chr(rst$rows, "[[", "key")
+    )
+    dsc <- cbind(pub, dsc)
+  }
+
+  dsc
+}
+
+interpret_date <- function(d, arg = "from") {
+
+  if (inherits(d, "Date") || inherits(d, "POSIXt")) {
+    d <- as.POSIXct(d)
+
+  } else if (inherits(d, "difftime")) {
+    d <- Sys.time() - d
+
+  } else if (identical(d, "last-week")) {
+    d <- Sys.time() - as.difftime(7, units = "days")
+
+  } else if (identical(d, "last-month")) {
+    d <- Sys.time() - as.difftime(30, units = "days")
+
+  } else if (is.numeric(d)) {
+    d <- Sys.time() - as.difftime(d, units = "days")
+
+  } else if (is.character(d)) {
+    d <- as.POSIXct(d)
+
+  } else {
+    stop("Invalid '", arg, "' argument, please see the docs.")
+  }
+
+  d
 }
 
 crandb_query <- function(url, error = TRUE, ...) {
@@ -176,16 +286,16 @@ crandb_query <- function(url, error = TRUE, ...) {
   rst
 }
 
-#' @importFrom assertthat assert_that is.count is.flag
-
 do_crandb_query <- function(from, limit,
-                          format = c("short", "latest", "full"),
-                          archived) {
+                            format = c("short", "latest", "full"),
+                            archived) {
 
-  assert_that(is_package_name(from))
-  assert_that(is.count(limit))
+  assert_that(
+    is_package_name(from),
+    is_positive_count(limit),
+    is_flag(archived)
+  )
   format <- match.arg(format)
-  assert_that(is.flag(archived))
 
   ept <- switch(
     format,
@@ -203,7 +313,7 @@ do_crandb_query <- function(from, limit,
 #' Query the history of a package
 #'
 #' @param package Package name.
-#' @return A tibble, with one row per package version.
+#' @return A data frame, with one row per package version.
 #' @export
 #' @examples
 #' \dontshow{if (pingr::is_online()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -267,7 +377,7 @@ rectangle_description <- function(description_list) {
 
   description_list[dep_types()] <- NULL
 
-  tibble::as_tibble(description_list)
+  as_data_frame(description_list)
 }
 
 idesc_get_deps <- function(description_list) {
