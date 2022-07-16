@@ -1,4 +1,8 @@
 
+# pkgsearch 3.1.1
+
+* pkgsearch gives nicer error messages now.
+
 # pkgsearch 3.1.0
 
 * pkgsearch functions return data frames now, instead of tibbles.
