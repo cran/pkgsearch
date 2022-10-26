@@ -1,7 +1,7 @@
-ffbb793206c944a1dbbfc77392a48b55 *DESCRIPTION
+986586645e549cbb1c45846c24927116 *DESCRIPTION
 3c5fc49fdec9fcaaccb63353a8e0e01c *LICENSE
 84c42a9bc0f4e2587f7e867a47445e80 *NAMESPACE
-d0ed6aaa3d19131b0bddf93afbf1f2f3 *NEWS.md
+036b355fccd883b226830e1b1267eb21 *NEWS.md
 a5c41da68d1c16d385fd6278a53629ba *R/aa-assertthat.R
 c1dbb190ed90e0231c513371c733c9c7 *R/aaa-rstudio-detect.R
 334bc853d203d6d7c853cdb02ca01063 *R/addin.R
@@ -9,7 +9,7 @@ c1dbb190ed90e0231c513371c733c9c7 *R/aaa-rstudio-detect.R
 cb16ebae478a3b377a8eb8a2b6c11518 *R/api.R
 e890c182e47d4493d23137130ab24184 *R/assert.R
 773e4db09280c1e2b0463de9764546f6 *R/compat-vctrs.R
-f3b8e85eebf811ae5f984ef4bc2aa5b9 *R/crandb-public-api.R
+238064efec0f2f4083e472c2ce04da9b *R/crandb-public-api.R
 2bd82078d905bc2fbca6683632dc87c2 *R/errors.R
 41b23a779b9c806537acfabd063594d7 *R/http.R
 9e1fcb84dc8de9dd680e845d381bfa65 *R/isonline.R
