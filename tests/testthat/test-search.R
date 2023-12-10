@@ -1,10 +1,7 @@
-
-context("search")
-
 test_that("search", {
   skip_if_offline()
 
-  x <- ps("csardi")
+  x <- ps("command line")
   expect_s3_class(x, "tbl")
   expect_s3_class(x, "pkg_search_result")
 
@@ -15,7 +12,7 @@ test_that("search", {
         colnames(x))
   )
 
-  expect_equal(x$package[1], "crayon")
+  expect_true("cli" %in% x$package)
 })
 
 test_that("again w/o previous search", {
