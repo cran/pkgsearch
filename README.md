@@ -26,6 +26,8 @@ access it through several lenses.
     -   [Preferring Phrases](#preferring-phrases)
     -   [British vs American English](#british-vs-american-english)
     -   [Ascii Folding](#ascii-folding)
+-   [Configuration](#configuration)
+    -   [Options](#options)
 -   [More info](#more-info)
 -   [License](#license)
 
@@ -58,20 +60,20 @@ library("pillar") # nicer data frame printing
 pkg_search("permutation test")
 ```
 
-    #> - "permutation test" ------------------------------------ 2441 packages in 0.02 seconds -
-    #>   #     package        version by                      @ title                           
-    #>   1 100 coin           1.4.3   Torsten Hothorn        2M Conditional Inference Procedu...
-    #>   2  50 perm           1.0.0.4 Michael P. Fay         3M Exact or Asymptotic Permutati...
-    #>   3  48 exactRankTests 0.8.35  Torsten Hothorn        2y Exact Distributions for Rank ...
-    #>   4  35 jmuOutlier     2.2     Steven T. Garren       4y Permutation Tests for Nonpara...
-    #>   5  35 nptest         1.1     Nathaniel E. Helwig    7M Nonparametric Bootstrap and P...
-    #>   6  33 lmPerm         2.1.0   Marco Torchiano        7y Permutation Tests for Linear ...
-    #>   7  29 wPerm          1.0.1   Neil A. Weiss          8y Permutation Tests               
-    #>   8  27 flip           2.5.0   Livio Finos            5y Multivariate Permutation Tests  
-    #>   9  25 cpt            1.0.2   Johann Gagnon-Bartsch  5y Classification Permutation Test 
-    #>  10  25 AUtests        0.99    Arjun Sondhi           3y Approximate Unconditional and...
+    #> - "permutation test" ----------------------------------- 2694 packages in 0.062 seconds -
+    #>   #     package           version by                      @ title                        
+    #>   1 100 coin              1.4.3   Torsten Hothorn        1y Conditional Inference Proc...
+    #>   2  35 perm              1.0.0.4 Michael P. Fay         1y Exact or Asymptotic Permut...
+    #>   3  32 exactRankTests    0.8.35  Torsten Hothorn        3y Exact Distributions for Ra...
+    #>   4  31 lmPerm            2.1.0   Marco Torchiano        8y Permutation Tests for Line...
+    #>   5  29 flip              2.5.0   Livio Finos            6y Multivariate Permutation T...
+    #>   6  22 jmuOutlier        2.2     Steven T. Garren       5y Permutation Tests for Nonp...
+    #>   7  22 nptest            1.1     Nathaniel E. Helwig    2y Nonparametric Bootstrap an...
+    #>   8  19 phyloseqGraphTest 0.1.1   Julia Fukuyama         1y Graph-Based Permutation Te...
+    #>   9  19 wPerm             1.0.1   Neil A. Weiss          9y Permutation Tests            
+    #>  10  17 cpt               1.0.2   Johann Gagnon-Bartsch  6y Classification Permutation...
 
-pkgsearch uses an [R-hub](https://docs.r-hub.io) web service and a
+pkgsearch uses an [R-hub](https://github.com/r-hub) web service and a
 careful ranking that puts popular packages before less frequently used
 ones.
 
@@ -95,7 +97,7 @@ had and when each of these versions was released?
 cran_package_history("testthat")
 ```
 
-    #> # A data frame: 44 × 29
+    #> # A data frame: 47 × 29
     #>    Package  Type    Title     Version Author Maintainer Description URL   License LazyData
     #>  * <chr>    <chr>   <chr>     <chr>   <chr>  <chr>      <chr>       <chr> <chr>   <chr>   
     #>  1 testthat Package Tools fo… 0.1     Hadle… Hadley Wi… Test_that … http… GPL     true    
@@ -108,7 +110,7 @@ cran_package_history("testthat")
     #>  8 testthat Package Testthat… 0.7     Hadle… Hadley Wi… A testing … http… GPL     true    
     #>  9 testthat Package Testthat… 0.7.1   Hadle… Hadley Wi… A testing … http… GPL     true    
     #> 10 testthat Package Testthat… 0.8     Hadle… Hadley Wi… A testing … http… MIT + … true    
-    #> # ℹ 34 more rows
+    #> # ℹ 37 more rows
     #> # ℹ 19 more variables: Collate <chr>, Packaged <chr>, Repository <chr>,
     #> #   `Date/Publication` <chr>, crandb_file_date <chr>, date <chr>, dependencies <list>,
     #> #   NeedsCompilation <chr>, Roxygen <chr>, `Authors@R` <chr>, BugReports <chr>,
@@ -126,18 +128,18 @@ cran_trending()
 ```
 
     #> # A data frame: 100 × 2
-    #>    package      score                
-    #>    <chr>        <chr>                
-    #>  1 pcalg        1203.6334096447825100
-    #>  2 nlraa        970.2647657841140500 
-    #>  3 sur          843.7564499484004100 
-    #>  4 dynr         501.1116481391976800 
-    #>  5 imbalance    448.0396203054065200 
-    #>  6 DoE.base     423.4324791958474100 
-    #>  7 precrec      386.7902114516512200 
-    #>  8 Sejong       334.8732815860843500 
-    #>  9 apcluster    325.1561461794019900 
-    #> 10 multilinguer 313.1972588608061300 
+    #>    package   score                
+    #>    <chr>     <chr>                
+    #>  1 str2str   2633.3621434745030300
+    #>  2 dataset   1982.4675324675324700
+    #>  3 priceR    1980.9412623130244400
+    #>  4 harbinger 545.1412604781123900 
+    #>  5 spatial   539.8151018398643400 
+    #>  6 gsubfn    527.1264266513903000 
+    #>  7 proto     425.2139863982963500 
+    #>  8 dad       420.7134086076252700 
+    #>  9 class     371.7153561418388700 
+    #> 10 nnet      351.3673143937156700 
     #> # ℹ 90 more rows
 
 ``` r
@@ -145,18 +147,18 @@ cran_top_downloaded()
 ```
 
     #> # A data frame: 100 × 2
-    #>    package     count 
-    #>    <chr>       <chr> 
-    #>  1 ragg        840026
-    #>  2 textshaping 826270
-    #>  3 ggplot2     698736
-    #>  4 devtools    534494
-    #>  5 pkgdown     514648
-    #>  6 rlang       500676
-    #>  7 rgl         489969
-    #>  8 sf          438924
-    #>  9 dplyr       416520
-    #> 10 lifecycle   389821
+    #>    package   count 
+    #>    <chr>     <chr> 
+    #>  1 rlang     297540
+    #>  2 cli       279443
+    #>  3 lifecycle 277978
+    #>  4 dplyr     270181
+    #>  5 glue      262172
+    #>  6 ggplot2   256966
+    #>  7 vctrs     252852
+    #>  8 jsonlite  238025
+    #>  9 withr     236281
+    #> 10 curl      221302
     #> # ℹ 90 more rows
 
 ### Keep up with CRAN
@@ -168,17 +170,17 @@ cran_events()
 ```
 
     #> CRAN events (events)---------------------------------------------------------------------
-    #>  . When     Package      Version Title                                               
-    #>  + 3 hours  TestAnaAPP   0.1.4   The 'shiny' App for Test Analysis and Visualization 
-    #>  + 3 hours  NMcalc       0.0.2   Basic Calculations for PK/PD Modeling               
-    #>  + 7 hours  CASMI        1.2.0   'CASMI'-Based Functions                             
-    #>  + 8 hours  cobalt       4.5.2   Covariate Balance Tables and Plots                  
-    #>  + 9 hours  raqs         1.0.2   Interface to the US EPA Air Quality System (AQS) API
-    #>  + 9 hours  str2str      1.0.0   Convert R Objects from One Structure to Another     
-    #>  + 9 hours  hemispheR    1.1.0   Processing Hemispherical Canopy Images              
-    #>  + 10 hours tidyfit      0.6.5   Regularized Linear Modeling with Tidy Data          
-    #>  + 11 hours FlexVarJM    0.1.0   Estimate Joint Models with Subject-Specific Variance
-    #>  + 11 hours ggScatRidges 0.1.0   Scatter Plot Combined with Ridgelines in 'ggplot2'
+    #>  . When    Package      Version Title                                                    
+    #>  + 2 hours eefAnalytics 1.1.5   Robust Analytical Methods for Evaluating Educational I...
+    #>  + 3 hours mvhtests     1.1     Multivariate Hypothesis Tests                            
+    #>  + 4 hours Compind      3.2     Composite Indicators Functions                           
+    #>  + 4 hours pecora       0.1.2   Permutation Conditional Random Tests                     
+    #>  + 5 hours oceanic      0.1.8   Location Identify Tool                                   
+    #>  + 6 hours plotthis     0.5.0   High-Level Plotting Built Upon 'ggplot2' and Other Plo...
+    #>  + 7 hours EnsembleBase 1.0.4   Extensible Package for Parallel, Batch Training of Bas...
+    #>  + 7 hours OralOpioids  2.0.4   Retrieving Oral Opioid Information                       
+    #>  + 7 hours BayesMixSurv 0.9.3   Bayesian Mixture Survival Models using Additive Mixtur...
+    #>  + 7 hours EMCluster    0.2-17  EM Algorithm for Model-Based Clustering of Finite Mixt...
 
 ## Search features
 
@@ -194,27 +196,27 @@ library(pkgsearch)
 pkg_search("C++")
 ```
 
-    #> - "C++" ----------------------------------------------- 15310 packages in 0.016 seconds -
+    #> - "C++" ----------------------------------------------- 10000 packages in 0.029 seconds -
     #>   #     package      version  by                    @ title                              
-    #>   1 100 Rcpp         1.0.11   Dirk Eddelbuettel    5M Seamless R and C++ Integration     
-    #>   2  35 BH           1.81.0.1 Dirk Eddelbuettel   10M Boost C++ Header Files             
-    #>   3  18 cpp11        0.4.6    Davis Vaughan        3M A C++11 Interface for R's C Inte...
-    #>   4  13 RcppProgress 0.4.2    Karl Forner          4y An Interruptible Progress Bar wi...
-    #>   5  10 inline       0.3.19   Dirk Eddelbuettel    2y Functions to Inline C, C++, Fort...
-    #>   6   9 SnowballC    0.7.1    Milan Bouchet-Valat  7M Snowball Stemmers Based on the C...
-    #>   7   7 RNifti       1.5.0    Jon Clayden          6M Fast R and C++ Access to NIfTI I...
-    #>   8   6 xml2         1.3.5    Hadley Wickham       5M Parse XML                          
-    #>   9   6 LiblineaR    2.10.22  Thibault Helleputte  1y Linear Predictive Models Based o...
-    #>  10   6 readxl       1.4.3    Jennifer Bryan       5M Read Excel Files
+    #>   1 100 Rcpp         1.0.13.1 Dirk Eddelbuettel    2M Seamless R and C++ Integration     
+    #>   2  33 BH           1.87.0.1 Dirk Eddelbuettel   23d Boost C++ Header Files             
+    #>   3  21 StanHeaders  2.32.10  Ben Goodrich         6M C++ Header Files for Stan          
+    #>   4  20 cpp11        0.5.1    Davis Vaughan        1M A C++11 Interface for R's C Inte...
+    #>   5  15 RPostgres    1.4.7    Kirill Müller        8M C++ Interface to PostgreSQL        
+    #>   6  14 RcppProgress 0.4.2    Karl Forner          5y An Interruptible Progress Bar wi...
+    #>   7  12 covr         3.6.4    Jim Hester           1y Test Coverage for Packages         
+    #>   8  10 RcppThread   2.2.0    Thomas Nagler        2d R-Friendly Threading in C++        
+    #>   9  10 inline       0.3.20   Dirk Eddelbuettel    2M Functions to Inline C, C++, Fort...
+    #>  10   9 SnowballC    0.7.1    Milan Bouchet-Valat  2y Snowball Stemmers Based on the C...
 
 ``` r
 pkg_search()
 ```
 
-    #> - "C++" ----------------------------------------------- 15310 packages in 0.016 seconds -
+    #> - "C++" ----------------------------------------------- 10000 packages in 0.029 seconds -
     #> 
-    #> 1 Rcpp @ 1.0.11                                           Dirk Eddelbuettel, 5 months ago
-    #> ---------------
+    #> 1 Rcpp @ 1.0.13.1                                         Dirk Eddelbuettel, 2 months ago
+    #> -----------------
     #>   # Seamless R and C++ Integration
     #>   The 'Rcpp' package provides R functions as well as C++ classes which offer a
     #>   seamless integration of R and C++. Many R data types and objects can be mapped
@@ -230,7 +232,7 @@ pkg_search()
     #>   https://dirk.eddelbuettel.com/code/rcpp.html
     #>   https://github.com/RcppCore/Rcpp
     #> 
-    #> 2 BH @ 1.81.0.1                                          Dirk Eddelbuettel, 10 months ago
+    #> 2 BH @ 1.87.0.1                                            Dirk Eddelbuettel, 23 days ago
     #> ---------------
     #>   # Boost C++ Header Files
     #>   Boost provides free peer-reviewed portable C++ source libraries.  A large part
@@ -239,19 +241,40 @@ pkg_search()
     #>   subset of Boost libraries for template use among CRAN packages. By placing
     #>   these libraries in this package, we offer a more efficient distribution system
     #>   for CRAN as replication of this code in the sources of other packages is
-    #>   avoided. As of release 1.81.0-0, the following Boost libraries are included:
+    #>   avoided. As of release 1.84.0-0, the following Boost libraries are included:
     #>   'accumulators' 'algorithm' 'align' 'any' 'atomic' 'beast' 'bimap' 'bind'
     #>   'circular_buffer' 'compute' 'concept' 'config' 'container' 'date_time'
     #>   'detail' 'dynamic_bitset' 'exception' 'flyweight' 'foreach' 'functional'
     #>   'fusion' 'geometry' 'graph' 'heap' 'icl' 'integer' 'interprocess' 'intrusive'
     #>   'io' 'iostreams' 'iterator' 'lambda2' 'math' 'move' 'mp11' 'mpl'
     #>   'multiprecision' 'numeric' 'pending' 'phoenix' 'polygon' 'preprocessor'
-    #>   'process' 'propery_tree' 'random' 'range' 'scope_exit' 'smart_ptr' 'sort'
-    #>   'spirit' 'tuple' 'type_traits' 'typeof' 'unordered' 'url' 'utility' 'uuid'.
+    #>   'process' 'propery_tree' 'qvm' 'random' 'range' 'scope_exit' 'smart_ptr'
+    #>   'sort' 'spirit' 'tuple' 'type_traits' 'typeof' 'unordered' 'url' 'utility'
+    #>   'uuid'.
     #>   https://github.com/eddelbuettel/bh
     #>   https://dirk.eddelbuettel.com/code/bh.html
     #> 
-    #> 3 cpp11 @ 0.4.6                                               Davis Vaughan, 3 months ago
+    #> 3 StanHeaders @ 2.32.10                                        Ben Goodrich, 6 months ago
+    #> -----------------------
+    #>   # C++ Header Files for Stan
+    #>   The C++ header files of the Stan project are provided by this package, but it
+    #>   contains little R code or documentation. The main reference is the vignette.
+    #>   There is a shared object containing part of the 'CVODES' library, but its
+    #>   functionality is not accessible from R. 'StanHeaders' is primarily useful for
+    #>   developers who want to utilize the 'LinkingTo' directive of their package's
+    #>   DESCRIPTION file to build on the Stan library without incurring unnecessary
+    #>   dependencies. The Stan project develops a probabilistic programming language
+    #>   that implements full or approximate Bayesian statistical inference via Markov
+    #>   Chain Monte Carlo or 'variational' methods and implements (optionally
+    #>   penalized) maximum likelihood estimation via optimization. The Stan library
+    #>   includes an advanced automatic differentiation scheme, 'templated' statistical
+    #>   and linear algebra functions that can handle the automatically
+    #>   'differentiable' scalar types (and doubles, 'ints', etc.), and a parser for
+    #>   the Stan language. The 'rstan' package provides user-facing R functions to
+    #>   parse, compile, test, estimate, and analyze Stan models.
+    #>   https://mc-stan.org/
+    #> 
+    #> 4 cpp11 @ 0.5.1                                          Davis Vaughan, about a month ago
     #> ---------------
     #>   # A C++11 Interface for R's C Interface
     #>   Provides a header only, C++11 interface to R's C interface.  Compared to other
@@ -261,7 +284,15 @@ pkg_search()
     #>   https://cpp11.r-lib.org
     #>   https://github.com/r-lib/cpp11
     #> 
-    #> 4 RcppProgress @ 0.4.2                                           Karl Forner, 4 years ago
+    #> 5 RPostgres @ 1.4.7                                           Kirill Müller, 8 months ago
+    #> -------------------
+    #>   # C++ Interface to PostgreSQL
+    #>   Fully DBI-compliant C++-backed interface to PostgreSQL
+    #>   <https://www.postgresql.org/>, an open-source relational database.
+    #>   https://rpostgres.r-dbi.org
+    #>   https://github.com/r-dbi/RPostgres
+    #> 
+    #> 6 RcppProgress @ 0.4.2                                           Karl Forner, 5 years ago
     #> ----------------------
     #>   # An Interruptible Progress Bar with OpenMP Support for C++ in R Packages
     #>   Allows to display a progress bar in the R console for long running
@@ -269,7 +300,27 @@ pkg_search()
     #>   computations even in multithreaded code, typically using OpenMP.
     #>   https://github.com/kforner/rcpp_progress
     #> 
-    #> 5 inline @ 0.3.19                                          Dirk Eddelbuettel, 2 years ago
+    #> 7 covr @ 3.6.4                                               Jim Hester, about a year ago
+    #> --------------
+    #>   # Test Coverage for Packages
+    #>   Track and report code coverage for your package and (optionally) upload the
+    #>   results to a coverage service like 'Codecov' <https://about.codecov.io> or
+    #>   'Coveralls' <https://coveralls.io>. Code coverage is a measure of the amount
+    #>   of code being exercised by a set of tests. It is an indirect measure of test
+    #>   quality and completeness. This package is compatible with any testing
+    #>   methodology or framework and tracks coverage of both R code and compiled
+    #>   C/C++/FORTRAN code.
+    #>   https://covr.r-lib.org
+    #>   https://github.com/r-lib/covr
+    #> 
+    #> 8 RcppThread @ 2.2.0                                            Thomas Nagler, 2 days ago
+    #> --------------------
+    #>   # R-Friendly Threading in C++
+    #>   Provides a C++11-style thread class and thread pool that can safely be
+    #>   interrupted from R. See Nagler (2021) <doi:10.18637/jss.v097.c01>.
+    #>   https://github.com/tnagler/RcppThread
+    #> 
+    #> 9 inline @ 0.3.20                                         Dirk Eddelbuettel, 2 months ago
     #> -----------------
     #>   # Functions to Inline C, C++, Fortran Function Calls from R
     #>   Functionality to dynamically define R functions and S4 methods with 'inlined'
@@ -277,8 +328,8 @@ pkg_search()
     #>   https://github.com/eddelbuettel/inline
     #>   https://dirk.eddelbuettel.com/code/inline.html
     #> 
-    #> 6 SnowballC @ 0.7.1                                     Milan Bouchet-Valat, 7 months ago
-    #> -------------------
+    #> 10 SnowballC @ 0.7.1                                     Milan Bouchet-Valat, 2 years ago
+    #> --------------------
     #>   # Snowball Stemmers Based on the C 'libstemmer' UTF-8 Library
     #>   An R interface to the C 'libstemmer' library that implements Porter's word
     #>   stemming algorithm for collapsing words to a common root to aid comparison of
@@ -287,52 +338,6 @@ pkg_search()
     #>   Irish, Italian, Lithuanian, Nepali, Norwegian, Portuguese, Romanian, Russian,
     #>   Spanish, Swedish, Tamil and Turkish.
     #>   https://github.com/nalimilan/R.TeMiS
-    #> 
-    #> 7 RNifti @ 1.5.0                                                Jon Clayden, 6 months ago
-    #> ----------------
-    #>   # Fast R and C++ Access to NIfTI Images
-    #>   Provides very fast read and write access to images stored in the NIfTI-1,
-    #>   NIfTI-2 and ANALYZE-7.5 formats, with seamless synchronisation of in-memory
-    #>   image objects between compiled C and interpreted R code. Also provides a
-    #>   simple image viewer, and a C/C++ API that can be used by other packages. Not
-    #>   to be confused with 'RNiftyReg', which performs image registration and applies
-    #>   spatial transformations.
-    #>   https://github.com/jonclayden/RNifti
-    #> 
-    #> 8 xml2 @ 1.3.5                                               Hadley Wickham, 5 months ago
-    #> --------------
-    #>   # Parse XML
-    #>   Work with XML files using a simple, consistent interface. Built on top of the
-    #>   'libxml2' C library.
-    #>   https://xml2.r-lib.org/
-    #>   https://github.com/r-lib/xml2
-    #> 
-    #> 9 LiblineaR @ 2.10.22                               Thibault Helleputte, about a year ago
-    #> ---------------------
-    #>   # Linear Predictive Models Based on the LIBLINEAR C/C++ Library
-    #>   A wrapper around the LIBLINEAR C/C++ library for machine learning (available
-    #>   at <https://www.csie.ntu.edu.tw/~cjlin/liblinear/>). LIBLINEAR is a simple
-    #>   library for solving large-scale regularized linear classification and
-    #>   regression. It currently supports L2-regularized classification (such as
-    #>   logistic regression, L2-loss linear SVM and L1-loss linear SVM) as well as
-    #>   L1-regularized classification (such as L2-loss linear SVM and logistic
-    #>   regression) and L2-regularized support vector regression (with L1- or
-    #>   L2-loss). The main features of LiblineaR include multi-class classification
-    #>   (one-vs-the rest, and Crammer & Singer method), cross validation for model
-    #>   selection, probability estimates (logistic regression only) or weights for
-    #>   unbalanced data. The estimation of the models is particularly fast as compared
-    #>   to other libraries.
-    #>   <https://dnalytics.com/software/liblinear/>
-    #> 
-    #> 10 readxl @ 1.4.3                                            Jennifer Bryan, 5 months ago
-    #> -----------------
-    #>   # Read Excel Files
-    #>   Import excel files into R. Supports '.xls' via the embedded 'libxls' C library
-    #>   <https://github.com/libxls/libxls> and '.xlsx' via the embedded 'RapidXML' C++
-    #>   library <https://rapidxml.sourceforge.net/>. Works on Windows, Mac and Linux
-    #>   without external dependencies.
-    #>   https://readxl.tidyverse.org
-    #>   https://github.com/tidyverse/readxl
 
 ### Pagination
 
@@ -344,35 +349,35 @@ to `pkg_search()`:
 ps("google")
 ```
 
-    #> - "google" ----------------------------------------------- 168 packages in 0.01 seconds -
+    #> - "google" ----------------------------------------------- 180 packages in 0.01 seconds -
     #>   #     package             version by               @ title                             
-    #>   1 100 googledrive         2.1.1   Jennifer Bryan  5M An Interface to Google Drive      
-    #>   2  84 googleVis           0.7.1   Markus Gesmann  9M R Interface to Google Charts      
-    #>   3  81 gargle              1.5.2   Jennifer Bryan  4M Utilities for Working with Goog...
-    #>   4  79 googleAuthR         2.0.1   Mark Edmondson  7M Authenticate and Create Google ...
-    #>   5  64 googlesheets4       1.1.1   Jennifer Bryan  5M Access Google Sheets using the ...
-    #>   6  60 googleCloudStorageR 0.7.0   Mark Edmondson  2y Interface with Google Cloud Sto...
-    #>   7  55 bigrquery           1.4.2   Hadley Wickham  7M An Interface to Google's 'BigQu...
-    #>   8  51 gsheet              0.4.5   Max Conway      4y Download Google Sheets Using Ju...
-    #>   9  47 cld2                1.2.4   Jeroen Ooms     1y Google's Compact Language Detec...
-    #>  10  34 cld3                1.6.0   Jeroen Ooms     2M Google's Compact Language Detec...
+    #>   1 100 googledrive         2.1.1   Jennifer Bryan  2y An Interface to Google Drive      
+    #>   2  79 gargle              1.5.2   Jennifer Bryan  1y Utilities for Working with Goog...
+    #>   3  73 googleVis           0.7.3   Markus Gesmann  8M R Interface to Google Charts      
+    #>   4  65 googleAuthR         2.0.2   Erik Grönroos   8M Authenticate and Create Google ...
+    #>   5  62 googlesheets4       1.1.1   Jennifer Bryan  2y Access Google Sheets using the ...
+    #>   6  59 bigrquery           1.5.1   Hadley Wickham 10M An Interface to Google's 'BigQu...
+    #>   7  51 googleCloudStorageR 0.7.0   Mark Edmondson  3y Interface with Google Cloud Sto...
+    #>   8  48 googlePolylines     0.8.5   David Cooley    3M Encoding Coordinates into 'Goog...
+    #>   9  48 cld2                1.2.5   Jeroen Ooms     3M Google's Compact Language Detec...
+    #>  10  47 gsheet              0.4.6   Max Conway     27d Download Google Sheets Using Ju...
 
 ``` r
 more()
 ```
 
-    #> - "google" ---------------------------------------------- 168 packages in 0.011 seconds -
+    #> - "google" ----------------------------------------------- 180 packages in 0.01 seconds -
     #>   #    package          version by                    @ title                            
-    #>  11 33 gtrendsR         1.5.1   Philippe Massicotte  1y Perform and Display Google Tre...
-    #>  12 32 tensorflow       2.14.0  Tomasz Kalinowski    2M R Interface to 'TensorFlow'      
-    #>  13 29 gfonts           0.2.0   Victor Perrier      11M Offline 'Google' Fonts for 'Ma...
-    #>  14 29 googleAnalyticsR 1.1.0   Mark Edmondson       1y Google Analytics API into R      
-    #>  15 29 bigQueryR        0.5.0   Mark Edmondson       4y Interface with Google BigQuery...
-    #>  16 27 re2              0.1.2   Girish Palya         2y R Interface to Google RE2 (C++...
-    #>  17 27 googleway        2.7.8   David Cooley         3M Accesses Google Maps APIs to R...
-    #>  18 27 scholar          0.2.4   Guangchuang Yu       1y Analyse Citation Data from Goo...
-    #>  19 25 googletraffic    0.1.4   Robert Marty         5M Google Traffic                   
-    #>  20 25 rgoogleclassroom 0.9.1   Candace Savonen      3M API Wrapper for Google Classro...
+    #>  11 34 V8               6.0.0   Jeroen Ooms          3M Embedded JavaScript and WebAss...
+    #>  12 32 cld3             1.6.1   Jeroen Ooms          3M Google's Compact Language Dete...
+    #>  13 30 tensorflow       2.16.0  Tomasz Kalinowski    9M R Interface to 'TensorFlow'      
+    #>  14 28 googleAnalyticsR 1.2.0   Erik Grönroos        5M Google Analytics API into R      
+    #>  15 26 gfonts           0.2.0   Victor Perrier       2y Offline 'Google' Fonts for 'Ma...
+    #>  16 26 re2              0.1.3   Girish Palya         1y R Interface to Google RE2 (C++...
+    #>  17 25 gtrendsR         1.5.1   Philippe Massicotte  3y Perform and Display Google Tre...
+    #>  18 25 googleway        2.7.8   David Cooley         1y Accesses Google Maps APIs to R...
+    #>  19 24 scholar          0.2.4   Guangchuang Yu       2y Analyse Citation Data from Goo...
+    #>  20 23 googletraffic    0.1.7   Robert Marty         4M Google Traffic
 
 ### Stemming
 
@@ -385,21 +390,21 @@ happen to be an exact package name or match another non-stemmed field.)
 ps("colour", size = 3)
 ```
 
-    #> - "colour" ---------------------------------------------- 318 packages in 0.021 seconds -
+    #> - "colour" ---------------------------------------------- 350 packages in 0.009 seconds -
     #>   #     package    version by              @ title                                       
-    #>  1  100 crayon     1.5.2   Gábor Csárdi   1y Colored Terminal Output                     
-    #>  2   62 viridis    0.6.4   Simon Garnier  4M Colorblind-Friendly Color Maps for R        
-    #>  3   59 colorspace 2.1.0   Achim Zeileis 10M A Toolbox for Manipulating and Assessing ...
+    #>  1  100 crayon     1.5.3   Gábor Csárdi   7M Colored Terminal Output                     
+    #>  2   66 viridis    0.6.5   Simon Garnier  1y Colorblind-Friendly Color Maps for R        
+    #>  3   63 colorspace 2.1.1   Achim Zeileis  6M A Toolbox for Manipulating and Assessing ...
 
 ``` r
 ps("colours", size = 3)
 ```
 
-    #> - "colours" ---------------------------------------------- 316 packages in 0.01 seconds -
+    #> - "colours" --------------------------------------------- 348 packages in 0.008 seconds -
     #>   #     package    version by              @ title                                       
-    #>  1  100 crayon     1.5.2   Gábor Csárdi   1y Colored Terminal Output                     
-    #>  2   62 viridis    0.6.4   Simon Garnier  4M Colorblind-Friendly Color Maps for R        
-    #>  3   59 colorspace 2.1.0   Achim Zeileis 10M A Toolbox for Manipulating and Assessing ...
+    #>  1  100 crayon     1.5.3   Gábor Csárdi   7M Colored Terminal Output                     
+    #>  2   66 viridis    0.6.5   Simon Garnier  1y Colorblind-Friendly Color Maps for R        
+    #>  3   63 colorspace 2.1.1   Achim Zeileis  6M A Toolbox for Manipulating and Assessing ...
 
 ### Ranking
 
@@ -416,16 +421,16 @@ ps("colour")[, c("score", "package", "revdeps", "downloads_last_month")]
     #> # A data frame: 10 × 4
     #>     score package      revdeps downloads_last_month
     #>     <dbl> <chr>          <int>                <int>
-    #>  1 18223. crayon           375               715661
-    #>  2 11222. viridis          200               288752
-    #>  3 10806. colorspace       191               742038
-    #>  4  9907. pillar           112              1208927
-    #>  5  7338. viridisLite       95               750543
-    #>  6  6722. colourpicker      47                35221
-    #>  7  4652. ggnewscale        33                21712
-    #>  8  4629. RColorBrewer     598               683668
-    #>  9  4471. shape             31               177749
-    #> 10  4229. colorRamps        21                 4917
+    #>  1 18395. crayon           378               731247
+    #>  2 12138. viridis          230               165727
+    #>  3 11601. colorspace       210               732566
+    #>  4 10605. pillar           126               876646
+    #>  5  7653. viridisLite      106               678701
+    #>  6  7293. colourpicker      55                20121
+    #>  7  5654. ggnewscale        50                26278
+    #>  8  4692. shape             35               140417
+    #>  9  4671. RColorBrewer     646               686954
+    #> 10  4122. colorRamps        19                 3593
 
 ### Preferring Phrases
 
@@ -439,18 +444,18 @@ the first page of results.)
 ps("permutation test")
 ```
 
-    #> - "permutation test" ------------------------------------ 2441 packages in 0.02 seconds -
-    #>   #     package        version by                      @ title                           
-    #>   1 100 coin           1.4.3   Torsten Hothorn        2M Conditional Inference Procedu...
-    #>   2  50 perm           1.0.0.4 Michael P. Fay         3M Exact or Asymptotic Permutati...
-    #>   3  48 exactRankTests 0.8.35  Torsten Hothorn        2y Exact Distributions for Rank ...
-    #>   4  35 jmuOutlier     2.2     Steven T. Garren       4y Permutation Tests for Nonpara...
-    #>   5  35 nptest         1.1     Nathaniel E. Helwig    7M Nonparametric Bootstrap and P...
-    #>   6  33 lmPerm         2.1.0   Marco Torchiano        7y Permutation Tests for Linear ...
-    #>   7  29 wPerm          1.0.1   Neil A. Weiss          8y Permutation Tests               
-    #>   8  27 flip           2.5.0   Livio Finos            5y Multivariate Permutation Tests  
-    #>   9  25 cpt            1.0.2   Johann Gagnon-Bartsch  5y Classification Permutation Test 
-    #>  10  25 AUtests        0.99    Arjun Sondhi           3y Approximate Unconditional and...
+    #> - "permutation test" ----------------------------------- 2694 packages in 0.017 seconds -
+    #>   #     package           version by                      @ title                        
+    #>   1 100 coin              1.4.3   Torsten Hothorn        1y Conditional Inference Proc...
+    #>   2  35 perm              1.0.0.4 Michael P. Fay         1y Exact or Asymptotic Permut...
+    #>   3  32 exactRankTests    0.8.35  Torsten Hothorn        3y Exact Distributions for Ra...
+    #>   4  31 lmPerm            2.1.0   Marco Torchiano        8y Permutation Tests for Line...
+    #>   5  29 flip              2.5.0   Livio Finos            6y Multivariate Permutation T...
+    #>   6  22 jmuOutlier        2.2     Steven T. Garren       5y Permutation Tests for Nonp...
+    #>   7  22 nptest            1.1     Nathaniel E. Helwig    2y Nonparametric Bootstrap an...
+    #>   8  19 phyloseqGraphTest 0.1.1   Julia Fukuyama         1y Graph-Based Permutation Te...
+    #>   9  19 wPerm             1.0.1   Neil A. Weiss          9y Permutation Tests            
+    #>  10  17 cpt               1.0.2   Johann Gagnon-Bartsch  6y Classification Permutation...
 
 If the whole phrase does not match, pkgsearch falls back to individual
 matching words. For example, a match from either words is enough here,
@@ -460,18 +465,18 @@ to get on the first page of results:
 ps("test http")
 ```
 
-    #> - "test http" ------------------------------------------ 6786 packages in 0.022 seconds -
-    #>   #     package      version by                  @ title                                 
-    #>   1 100 httptest     4.2.1   Neal Richardson    5M A Test Environment for HTTP Requests  
-    #>   2  13 webfakes     1.2.1   Gábor Csárdi       2M Fake Web Apps for HTTP Testing        
-    #>   3  13 vcr          1.2.2   Scott Chamberlain  5M Record 'HTTP' Calls to Disk           
-    #>   4  13 psych        2.3.9   William Revelle    2M Procedures for Psychological, Psych...
-    #>   5   8 httr         1.4.7   Hadley Wickham     3M Tools for Working with URLs and HTTP  
-    #>   6   8 webmockr     0.9.0   Scott Chamberlain  9M Stubbing and Setting Expectations o...
-    #>   7   5 bnlearn      4.9     Marco Scutari      2M Bayesian Network Structure Learning...
-    #>   8   5 clubSandwich 0.5.10  James Pustejovsky  4M Cluster-Robust (Sandwich) Variance ...
-    #>   9   4 oompaBase    3.2.9   Kevin R. Coombes   4y Class Unions, Matrix Operations, an...
-    #>  10   4 testthat     3.2.0   Hadley Wickham     2M Unit Testing for R
+    #> - "test http" ------------------------------------------ 7460 packages in 0.038 seconds -
+    #>   #     package   version by                  @ title                                    
+    #>   1 100 httptest  4.2.2   Neal Richardson    1y A Test Environment for HTTP Requests     
+    #>   2  72 covr      3.6.4   Jim Hester         1y Test Coverage for Packages               
+    #>   3  51 webfakes  1.3.1   Gábor Csárdi       9M Fake Web Apps for HTTP Testing           
+    #>   4  16 testthat  3.2.2   Hadley Wickham     1M Unit Testing for R                       
+    #>   5  13 psych     2.4.12  William Revelle   17d Procedures for Psychological, Psychome...
+    #>   6  12 vcr       1.6.0   Scott Chamberlain  6M Record 'HTTP' Calls to Disk              
+    #>   7   8 httr      1.4.7   Hadley Wickham     1y Tools for Working with URLs and HTTP     
+    #>   8   7 webmockr  1.0.0   Scott Chamberlain  6M Stubbing and Setting Expectations on '...
+    #>   9   6 rmarkdown 2.29    Yihui Xie          2M Dynamic Documents for R                  
+    #>  10   6 knitr     1.49    Yihui Xie          2M A General-Purpose Package for Dynamic ...
 
 ### British vs American English
 
@@ -483,35 +488,35 @@ results. E.g. note the spelling of colour/color in the results:
 ps("colour")
 ```
 
-    #> - "colour" ---------------------------------------------- 318 packages in 0.009 seconds -
+    #> - "colour" ---------------------------------------------- 350 packages in 0.013 seconds -
     #>   #     package      version by                 @ title                                  
-    #>   1 100 crayon       1.5.2   Gábor Csárdi      1y Colored Terminal Output                
-    #>   2  62 viridis      0.6.4   Simon Garnier     4M Colorblind-Friendly Color Maps for R   
-    #>   3  59 colorspace   2.1.0   Achim Zeileis    10M A Toolbox for Manipulating and Asses...
-    #>   4  54 pillar       1.9.0   Kirill Müller     8M Coloured Formatting for Columns        
-    #>   5  40 viridisLite  0.4.2   Simon Garnier     7M Colorblind-Friendly Color Maps (Lite...
-    #>   6  37 colourpicker 1.3.0   Dean Attali       3M A Colour Picker Tool for Shiny and f...
-    #>   7  26 ggnewscale   0.4.9   Elio Campitelli   6M Multiple Fill and Colour Scales in '...
-    #>   8  25 RColorBrewer 1.1.3   Erich Neuwirth    2y ColorBrewer Palettes                   
-    #>   9  25 shape        1.4.6   Karline Soetaert  3y Functions for Plotting Graphical Sha...
-    #>  10  23 colorRamps   2.3.1   Tim Keitt         2y Builds Color Tables
+    #>   1 100 crayon       1.5.3   Gábor Csárdi      7M Colored Terminal Output                
+    #>   2  66 viridis      0.6.5   Simon Garnier     1y Colorblind-Friendly Color Maps for R   
+    #>   3  63 colorspace   2.1.1   Achim Zeileis     6M A Toolbox for Manipulating and Asses...
+    #>   4  58 pillar       1.10.1  Kirill Müller     2d Coloured Formatting for Columns        
+    #>   5  42 viridisLite  0.4.2   Simon Garnier     2y Colorblind-Friendly Color Maps (Lite...
+    #>   6  40 colourpicker 1.3.0   Dean Attali       1y A Colour Picker Tool for Shiny and f...
+    #>   7  31 ggnewscale   0.5.0   Elio Campitelli   6M Multiple Fill and Colour Scales in '...
+    #>   8  26 shape        1.4.6.1 Karline Soetaert 11M Functions for Plotting Graphical Sha...
+    #>   9  25 RColorBrewer 1.1.3   Erich Neuwirth    3y ColorBrewer Palettes                   
+    #>  10  22 colorRamps   2.3.4   Gregory Jefferis 10M Builds Color Tables
 
 ``` r
 ps("color")
 ```
 
-    #> - "color" ----------------------------------------------- 317 packages in 0.011 seconds -
+    #> - "color" ----------------------------------------------- 349 packages in 0.006 seconds -
     #>   #     package      version by                 @ title                                  
-    #>   1 100 crayon       1.5.2   Gábor Csárdi      1y Colored Terminal Output                
-    #>   2  62 viridis      0.6.4   Simon Garnier     4M Colorblind-Friendly Color Maps for R   
-    #>   3  59 colorspace   2.1.0   Achim Zeileis    10M A Toolbox for Manipulating and Asses...
-    #>   4  54 pillar       1.9.0   Kirill Müller     8M Coloured Formatting for Columns        
-    #>   5  40 viridisLite  0.4.2   Simon Garnier     7M Colorblind-Friendly Color Maps (Lite...
-    #>   6  37 colourpicker 1.3.0   Dean Attali       3M A Colour Picker Tool for Shiny and f...
-    #>   7  26 ggnewscale   0.4.9   Elio Campitelli   6M Multiple Fill and Colour Scales in '...
-    #>   8  25 RColorBrewer 1.1.3   Erich Neuwirth    2y ColorBrewer Palettes                   
-    #>   9  25 shape        1.4.6   Karline Soetaert  3y Functions for Plotting Graphical Sha...
-    #>  10  23 colorRamps   2.3.1   Tim Keitt         2y Builds Color Tables
+    #>   1 100 crayon       1.5.3   Gábor Csárdi      7M Colored Terminal Output                
+    #>   2  66 viridis      0.6.5   Simon Garnier     1y Colorblind-Friendly Color Maps for R   
+    #>   3  63 colorspace   2.1.1   Achim Zeileis     6M A Toolbox for Manipulating and Asses...
+    #>   4  58 pillar       1.10.1  Kirill Müller     2d Coloured Formatting for Columns        
+    #>   5  42 viridisLite  0.4.2   Simon Garnier     2y Colorblind-Friendly Color Maps (Lite...
+    #>   6  40 colourpicker 1.3.0   Dean Attali       1y A Colour Picker Tool for Shiny and f...
+    #>   7  31 ggnewscale   0.5.0   Elio Campitelli   6M Multiple Fill and Colour Scales in '...
+    #>   8  26 shape        1.4.6.1 Karline Soetaert 11M Functions for Plotting Graphical Sha...
+    #>   9  25 RColorBrewer 1.1.3   Erich Neuwirth    3y ColorBrewer Palettes                   
+    #>  10  22 colorRamps   2.3.4   Gregory Jefferis 10M Builds Color Tables
 
 ### Ascii Folding
 
@@ -524,25 +529,34 @@ Note that case is also ignored.
 ps("gabor", size = 5)
 ```
 
-    #> - "gabor" ----------------------------------------------- 105 packages in 0.009 seconds -
+    #> - "gabor" ----------------------------------------------- 108 packages in 0.005 seconds -
     #>   #     package  version by              @ title                                         
-    #>  1  100 cli      3.6.1   Gábor Csárdi   8M Helpers for Developing Command Line Interfaces
-    #>  2   83 crayon   1.5.2   Gábor Csárdi   1y Colored Terminal Output                       
-    #>  3   66 progress 1.2.2   Gábor Csárdi   5y Terminal Progress Bars                        
-    #>  4   61 fs       1.6.3   Gábor Csárdi   4M Cross-Platform File System Operations Based...
-    #>  5   54 zoo      1.8.12  Achim Zeileis  7M S3 Infrastructure for Regular and Irregular...
+    #>  1  100 cli      3.6.3   Gábor Csárdi   7M Helpers for Developing Command Line Interfaces
+    #>  2   66 crayon   1.5.3   Gábor Csárdi   7M Colored Terminal Output                       
+    #>  3   56 fs       1.6.5   Gábor Csárdi   2M Cross-Platform File System Operations Based...
+    #>  4   56 progress 1.2.3   Gábor Csárdi   1y Terminal Progress Bars                        
+    #>  5   46 zoo      1.8.12  Achim Zeileis  2y S3 Infrastructure for Regular and Irregular...
 
 ``` r
 ps("Gábor", size = 5)
 ```
 
-    #> - "Gábor" ----------------------------------------------- 105 packages in 0.009 seconds -
+    #> - "Gábor" ----------------------------------------------- 108 packages in 0.005 seconds -
     #>   #     package  version by              @ title                                         
-    #>  1  100 cli      3.6.1   Gábor Csárdi   8M Helpers for Developing Command Line Interfaces
-    #>  2   83 crayon   1.5.2   Gábor Csárdi   1y Colored Terminal Output                       
-    #>  3   66 progress 1.2.2   Gábor Csárdi   5y Terminal Progress Bars                        
-    #>  4   61 fs       1.6.3   Gábor Csárdi   4M Cross-Platform File System Operations Based...
-    #>  5   54 zoo      1.8.12  Achim Zeileis  7M S3 Infrastructure for Regular and Irregular...
+    #>  1  100 cli      3.6.3   Gábor Csárdi   7M Helpers for Developing Command Line Interfaces
+    #>  2   66 crayon   1.5.3   Gábor Csárdi   7M Colored Terminal Output                       
+    #>  3   56 fs       1.6.5   Gábor Csárdi   2M Cross-Platform File System Operations Based...
+    #>  4   56 progress 1.2.3   Gábor Csárdi   1y Terminal Progress Bars                        
+    #>  5   46 zoo      1.8.12  Achim Zeileis  2y S3 Infrastructure for Regular and Irregular...
+
+## Configuration
+
+### Options
+
+-   `timeout`: pkgsearch follows the `timeout` options for HTTP requests
+    (i.e. for `pkg_search()` and `advanced_search()`. `timeout` is the
+    limit for the total time of the HTTP request, and it is in seconds.
+    See `?options` for details.
 
 ## More info
 
@@ -552,4 +566,4 @@ See the [complete documentation](https://r-hub.github.io/pkgsearch/).
 
 MIT @ [Gábor Csárdi](https://github.com/gaborcsardi),
 [RStudio](https://github.com/rstudio), [R
-Consortium](https://www.r-consortium.org/).
+Consortium](https://r-consortium.org/).
